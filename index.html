@@ -298,7 +298,7 @@
         /* Sites Grid - 가로 최대 4개 고정 */
         .sites-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 무조건 4등분 */
+            grid-template-columns: repeat(4, 1fr); 
             gap: 1rem;
             margin-bottom: 2.5rem;
         }
@@ -480,7 +480,7 @@
     </div>
 
     <script>
-        // 번역 데이터 (새로운 태그들 추가)
+        // 번역 데이터
         const translations = {
             ko: {
                 'subtitle': '크리에이터와 전문가를 위한 큐레이션 링크',
@@ -509,7 +509,7 @@
                 'tag-audio': '🎵 오디오',
                 // 일반 세부 태그
                 'tag-platform': '🌐 플랫폼',
-                'tag-freelance': '🤝 프리랜서',
+                'tag-freelance': '🤝 외주/프리랜서',
                 'tag-3d': '🧊 3D / CG',
                 'tag-uiux': '📱 UI/UX',
                 'tag-asset': '📦 에셋/소스',
@@ -550,7 +550,7 @@
             }
         };
 
-        // 전체 사이트 데이터 (각 분야 대폭 추가)
+        // 전체 사이트 데이터 (방문자 관점으로 텍스트 개선)
         const sites = [
             // ================= AI TOOLS =================
             {
@@ -563,7 +563,7 @@
             },
             {
                 name: 'Claude', url: 'https://claude.ai', icon: '🧠', category: 'ai', tag: 'tag-chat',
-                description: { ko: '긴 문맥과 디테일한 코딩 작업에 강력한 AI', en: 'Powerful AI for long context and coding' }
+                description: { ko: '긴 문맥 분석과 디테일한 코딩 작업에 강력한 AI', en: 'Powerful AI for long context and detailed coding' }
             },
             {
                 name: 'Gemini', url: 'https://gemini.google.com/?hl=ko', icon: '💎', category: 'ai', tag: 'tag-multi',
@@ -575,15 +575,15 @@
             },
             {
                 name: 'Higgsfield AI', url: 'https://higgsfield.ai', icon: '⚡', category: 'ai', tag: 'tag-video',
-                description: { ko: '모션 그래픽/시네마틱 영상 제작에 특화된 AI 툴', en: 'AI tool specialized in cinematic video creation' }
+                description: { ko: '모션 그래픽 및 시네마틱 영상 제작에 특화된 AI 툴', en: 'AI tool specialized in cinematic video creation' }
             },
             {
                 name: 'Sora', url: 'https://sora.com', icon: '🎬', category: 'ai', tag: 'tag-video',
-                description: { ko: 'OpenAI의 압도적 퀄리티 텍스트-비디오 모델', en: 'OpenAI\'s breathtaking text-to-video model' }
+                description: { ko: 'OpenAI의 압도적 퀄리티 텍스트-비디오 생성 모델', en: 'OpenAI\'s breathtaking text-to-video generation model' }
             },
             {
                 name: 'Kling AI', url: 'https://klingai.com', icon: '🎥', category: 'ai', tag: 'tag-video',
-                description: { ko: '디테일한 모션 컨트롤이 가능한 비디오 생성', en: 'Video generation with detailed motion control' }
+                description: { ko: '디테일한 모션 컨트롤이 가능한 비디오 생성 플랫폼', en: 'Video generation platform with detailed motion control' }
             },
             {
                 name: 'Midjourney', url: 'https://www.midjourney.com', icon: '⛵', category: 'ai', tag: 'tag-image',
@@ -605,7 +605,7 @@
             // ================= CAREER & JOB =================
             {
                 name: 'LinkedIn', url: 'https://www.linkedin.com', icon: '💼', category: 'career', tag: 'tag-platform',
-                description: { ko: '글로벌 비즈니스 네트워킹 및 해외 취업/이직', en: 'Global networking & jobs' }
+                description: { ko: '글로벌 비즈니스 네트워킹 및 해외 취업/이직', en: 'Global networking & job opportunities' }
             },
             {
                 name: '원티드', url: 'https://www.wanted.co.kr', icon: '🎯', category: 'career', tag: 'tag-platform',
@@ -617,7 +617,7 @@
             },
             {
                 name: '리멤버', url: 'https://rememberapp.co.kr/', icon: '👔', category: 'career', tag: 'tag-platform',
-                description: { ko: '명함 관리부터 전문가 스카웃 제안까지 받는 곳', en: 'Business card management & career scouting' }
+                description: { ko: '명함 관리부터 전문가 스카웃 제안까지 받는 서비스', en: 'Business card management & career scouting' }
             },
             {
                 name: '크몽', url: 'https://kmong.com', icon: '💡', category: 'career', tag: 'tag-freelance',
@@ -625,13 +625,13 @@
             },
             {
                 name: '숨고', url: 'https://soomgo.com/', icon: '🤝', category: 'career', tag: 'tag-freelance',
-                description: { ko: '필요한 외주 작업을 빠르게 매칭받는 서비스', en: 'Fast matching service for freelance work' }
+                description: { ko: '전문가가 필요한 외주 작업을 빠르게 매칭받는 플랫폼', en: 'Fast matching platform for freelance work' }
             },
 
             // ================= VIDEO =================
             {
                 name: 'YouTube', url: 'https://www.youtube.com', icon: '📺', category: 'video', tag: 'tag-platform',
-                description: { ko: '전 세계 가장 큰 동영상 공유 및 크리에이터 플랫폼', en: 'The largest global video sharing platform' }
+                description: { ko: '전 세계 가장 큰 동영상 공유 및 크리에이터 커뮤니티', en: 'The largest global video sharing community' }
             },
             {
                 name: 'Vimeo', url: 'https://vimeo.com', icon: '🎞️', category: 'video', tag: 'tag-platform',
@@ -639,7 +639,7 @@
             },
             {
                 name: 'Motion Array', url: 'https://motionarray.com/', icon: '🎬', category: 'video', tag: 'tag-asset',
-                description: { ko: '프리미어, 에프터이펙트 템플릿 및 트랜지션 소스', en: 'Premiere & AE templates, transitions, and assets' }
+                description: { ko: '프리미어, 에펙 템플릿 및 트랜지션 소스 다운로드', en: 'Premiere & AE templates, transitions, and assets' }
             },
             {
                 name: 'Artlist', url: 'https://artlist.io/', icon: '🎵', category: 'video', tag: 'tag-asset',
@@ -657,7 +657,7 @@
             },
             {
                 name: 'ArtStation', url: 'https://www.artstation.com', icon: '⚔️', category: 'design', tag: 'tag-3d',
-                description: { ko: '3D, 컨셉 아트, 게임 디자인 분야 최고의 포트폴리오 사이트', en: 'Premier showcase platform for 3D and concept art' }
+                description: { ko: '3D, 컨셉 아트, 게임 디자인 분야 최고의 포트폴리오 갤러리', en: 'Premier showcase gallery for 3D and concept art' }
             },
             {
                 name: 'Dribbble', url: 'https://dribbble.com', icon: '🏀', category: 'design', tag: 'tag-uiux',
@@ -665,7 +665,7 @@
             },
             {
                 name: 'Pinterest', url: 'https://www.pinterest.com', icon: '📌', category: 'design', tag: 'tag-platform',
-                description: { ko: '무한한 시각적 레퍼런스와 아이디어 무드보드', en: 'Visual reference and idea moodboards' }
+                description: { ko: '무한한 시각적 레퍼런스와 아이디어 무드보드 탐색', en: 'Explore visual references and idea moodboards' }
             },
             {
                 name: 'Awwwards', url: 'https://www.awwwards.com/', icon: '🏆', category: 'design', tag: 'tag-uiux',
@@ -679,27 +679,27 @@
             // ================= CREATOR HUB =================
             {
                 name: 'GitHub', url: 'https://github.com/pandauniverse-art', icon: '💻', category: 'creator', tag: 'tag-platform',
-                description: { ko: '판다유니버스 코드 저장소 및 프론트엔드 프로젝트', en: 'Panda Universe code repository and projects' }
+                description: { ko: '인터랙티브 웹, 프론트엔드 디자인 오픈소스 및 레퍼런스 코드 저장소', en: 'Open-source repository for interactive web and front-end design references' }
             },
             {
                 name: '인프런 (Inflearn)', url: 'https://www.inflearn.com/users/574632/@panda3d', icon: '🎓', category: 'creator', tag: 'tag-course',
-                description: { ko: 'C4D, Octane Render 등 실무 디자인 온라인 강의', en: 'Online courses including C4D and practical design' }
+                description: { ko: 'C4D, Octane Render 등 실무 위주의 3D 모션그래픽 전문 강의 채널', en: 'Professional 3D motion graphics courses focusing on practical workflow' }
             },
             {
                 name: '콜로소 (Coloso)', url: 'https://coloso.co.kr/', icon: '🔥', category: 'creator', tag: 'tag-course',
-                description: { ko: '업계 최상위 전문가들의 3D, 모션그래픽, 아트워크 인강', en: 'High-end classes by top industry professionals in 3D & Motion' }
+                description: { ko: '업계 최상위 전문가들의 3D, 모션그래픽, 아트워크 마스터 클래스', en: 'Master classes by top industry professionals in 3D & Motion' }
             },
             {
                 name: 'Gumroad', url: 'https://gumroad.com/', icon: '🛒', category: 'creator', tag: 'tag-asset',
-                description: { ko: '자신만의 3D 에셋, 튜토리얼, 굿즈를 직접 판매하는 플랫폼', en: 'Platform to sell your own 3D assets, tutorials, and goods' }
+                description: { ko: '자신만의 3D 에셋, 튜토리얼, 디지털 굿즈를 직접 판매하는 플랫폼', en: 'Platform to sell digital goods, 3D assets, and tutorials' }
             },
             {
                 name: 'CGTrader', url: 'https://www.cgtrader.com/', icon: '🧊', category: 'creator', tag: 'tag-3d',
-                description: { ko: '글로벌 3D 모델 마켓플레이스, 소스 구매 및 판매', en: 'Global 3D model marketplace for buying and selling' }
+                description: { ko: '글로벌 3D 모델 마켓플레이스, 고품질 렌더링 소스 구매 및 판매', en: 'Global 3D model marketplace for high-quality assets' }
             },
             {
                 name: '티스토리 블로그', url: 'https://panda-universe.tistory.com/', icon: '✍️', category: 'creator', tag: 'tag-platform',
-                description: { ko: '판다유니버스 3D 기술 튜토리얼 및 지식 아카이빙', en: 'Panda Universe 3D technical tutorials & knowledge base' }
+                description: { ko: '3D 그래픽 튜토리얼, 렌더링 팁 등 실무자를 위한 디자인 지식 블로그', en: 'Design knowledge blog featuring 3D tutorials and rendering tips for professionals' }
             }
         ];
 
