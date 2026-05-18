@@ -295,10 +295,10 @@
         .lang-btn:hover { background: rgba(99, 102, 241, 0.1); }
         .lang-btn.active { background: var(--primary-color); color: white; }
 
-        /* Sites Grid - 초고밀도 컴팩트 레이아웃 */
+        /* Sites Grid - 가로 최대 4개 고정 */
         .sites-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 더 작아진 그리드 */
+            grid-template-columns: repeat(4, 1fr); /* 무조건 4등분 */
             gap: 1rem;
             margin-bottom: 2.5rem;
         }
@@ -307,7 +307,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 1rem; /* 패딩 축소 */
+            padding: 1rem;
             transition: all 0.2s ease;
             cursor: pointer;
             text-decoration: none;
@@ -332,7 +332,7 @@
         }
 
         .site-icon {
-            font-size: 1.6rem; /* 아이콘 사이즈 축소 */
+            font-size: 1.6rem;
         }
 
         /* 뱃지(분류 태그) 컴팩트 스타일 */
@@ -348,7 +348,7 @@
         }
 
         .site-name {
-            font-size: 1rem; /* 이름 폰트 축소 */
+            font-size: 1rem;
             font-weight: 700;
             margin-bottom: 0.3rem;
             color: var(--text-color);
@@ -359,7 +359,7 @@
 
         .site-description {
             color: var(--text-secondary);
-            font-size: 0.8rem; /* 설명 폰트 축소 */
+            font-size: 0.8rem;
             line-height: 1.35;
             flex-grow: 1;
             display: -webkit-box;
@@ -397,13 +397,25 @@
 
         footer a:hover { color: var(--secondary-color); }
 
+        /* 반응형 그리드 - 화면 크기에 따라 3개, 2개, 1개로 축소 */
+        @media (max-width: 1024px) {
+            .sites-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .sites-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 0.6rem;
+                grid-template-columns: repeat(2, 1fr);
             }
             .controls { flex-direction: column; }
             .search-box { width: 100%; max-width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            .sites-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -468,7 +480,7 @@
     </div>
 
     <script>
-        // Translation Data (태그 분류 세분화)
+        // 번역 데이터 (새로운 태그들 추가)
         const translations = {
             ko: {
                 'subtitle': '크리에이터와 전문가를 위한 큐레이션 링크',
@@ -490,11 +502,18 @@
                 'category-creator': 'CREATOR HUB',
                 // AI 세부 태그
                 'tag-agent': '🤖 에이전트',
-                'tag-chat': '💬 대화형/챗봇',
-                'tag-image': '🎨 이미지 전용',
-                'tag-video': '🎬 영상 전용',
-                'tag-multi': '✨ 이미지+영상 (멀티)',
-                'tag-audio': '🎵 오디오/음악'
+                'tag-chat': '💬 챗봇',
+                'tag-image': '🎨 이미지',
+                'tag-video': '🎬 비디오',
+                'tag-multi': '✨ 멀티모달',
+                'tag-audio': '🎵 오디오',
+                // 일반 세부 태그
+                'tag-platform': '🌐 플랫폼',
+                'tag-freelance': '🤝 프리랜서',
+                'tag-3d': '🧊 3D / CG',
+                'tag-uiux': '📱 UI/UX',
+                'tag-asset': '📦 에셋/소스',
+                'tag-course': '📚 강의/교육'
             },
             en: {
                 'subtitle': 'Curated links for creators and professionals',
@@ -517,205 +536,170 @@
                 // AI 세부 태그
                 'tag-agent': '🤖 AI Agent',
                 'tag-chat': '💬 Chatbot',
-                'tag-image': '🎨 Image Only',
-                'tag-video': '🎬 Video Only',
-                'tag-multi': '✨ Image+Video',
-                'tag-audio': '🎵 Audio/Music'
+                'tag-image': '🎨 Image',
+                'tag-video': '🎬 Video',
+                'tag-multi': '✨ Multi-modal',
+                'tag-audio': '🎵 Audio',
+                // 일반 세부 태그
+                'tag-platform': '🌐 Platform',
+                'tag-freelance': '🤝 Freelance',
+                'tag-3d': '🧊 3D / CG',
+                'tag-uiux': '📱 UI/UX',
+                'tag-asset': '📦 Assets',
+                'tag-course': '📚 Courses'
             }
         };
 
-        // 2026 트렌드 AI 대거 추가 및 태그 세분화
+        // 전체 사이트 데이터 (각 분야 대폭 추가)
         const sites = [
-            // AI AGENTS & CHAT
+            // ================= AI TOOLS =================
             {
                 name: 'Manus', url: 'https://manus.im', icon: '🦾', category: 'ai', tag: 'tag-agent',
-                description: {
-                    ko: '복잡한 작업을 자율적으로 기획하고 수행하는 차세대 AI 에이전트',
-                    en: 'Next-gen AI agent that autonomously plans and executes complex tasks'
-                }
+                description: { ko: '복잡한 작업을 자율적으로 수행하는 AI 에이전트', en: 'Autonomous AI agent for complex tasks' }
             },
             {
                 name: 'ChatGPT', url: 'https://chat.openai.com', icon: '🤖', category: 'ai', tag: 'tag-chat',
-                description: {
-                    ko: '대화형 AI 어시스턴트, 글쓰기, 코딩, 아이디어 발전에 활용',
-                    en: 'Conversational AI assistant for writing, coding, and brainstorming'
-                }
+                description: { ko: '아이디어, 글쓰기, 코드 작성 등 만능 AI 비서', en: 'Versatile AI assistant for writing and coding' }
             },
             {
                 name: 'Claude', url: 'https://claude.ai', icon: '🧠', category: 'ai', tag: 'tag-chat',
-                description: {
-                    ko: 'Anthropic의 AI, 긴 문맥과 복잡한 코딩 및 분석 작업에 강점',
-                    en: 'Anthropic\'s AI assistant with strengths in long context and complex tasks'
-                }
+                description: { ko: '긴 문맥과 디테일한 코딩 작업에 강력한 AI', en: 'Powerful AI for long context and coding' }
             },
             {
                 name: 'Gemini', url: 'https://gemini.google.com/?hl=ko', icon: '💎', category: 'ai', tag: 'tag-multi',
-                description: {
-                    ko: 'Google의 멀티모달 AI, 텍스트/이미지/비디오 프롬프트 동시 분석 및 생성',
-                    en: 'Google\'s multimodal AI for text, image, and video generation and analysis'
-                }
+                description: { ko: 'Google의 멀티모달 AI, 빠른 리서치와 생성 지원', en: 'Google\'s multi-modal AI for quick research' }
             },
             {
                 name: 'Perplexity', url: 'https://www.perplexity.ai', icon: '🔍', category: 'ai', tag: 'tag-chat',
-                description: {
-                    ko: '실시간 웹 검색과 출처 기반 답변을 제공하는 강력한 AI 검색 엔진',
-                    en: 'AI-powered search engine with real-time information and cited answers'
-                }
+                description: { ko: '출처 기반으로 정확하게 답변하는 AI 검색 엔진', en: 'AI search engine providing cited answers' }
             },
-            {
-                name: 'Genspark', url: 'https://www.genspark.ai', icon: '🌟', category: 'ai', tag: 'tag-multi',
-                description: {
-                    ko: '정보 검색부터 이미지/비디오 생성까지 지원하는 차세대 검색 플랫폼',
-                    en: 'Next-gen search engine supporting multi-modal content generation'
-                }
-            },
-
-            // AI VIDEO (영상 전용)
             {
                 name: 'Higgsfield AI', url: 'https://higgsfield.ai', icon: '⚡', category: 'ai', tag: 'tag-video',
-                description: {
-                    ko: '압도적인 카메라 모션 제어와 모바일 친화적인 고품질 AI 비디오 툴',
-                    en: 'High-quality AI video tool with advanced cinematic camera motion control'
-                }
+                description: { ko: '모션 그래픽/시네마틱 영상 제작에 특화된 AI 툴', en: 'AI tool specialized in cinematic video creation' }
             },
             {
                 name: 'Sora', url: 'https://sora.com', icon: '🎬', category: 'ai', tag: 'tag-video',
-                description: {
-                    ko: 'OpenAI의 영상 생성 AI, 놀라운 물리 법칙과 시각적 퀄리티 구현',
-                    en: 'OpenAI\'s video AI generating exceptionally realistic and complex scenes'
-                }
+                description: { ko: 'OpenAI의 압도적 퀄리티 텍스트-비디오 모델', en: 'OpenAI\'s breathtaking text-to-video model' }
             },
             {
                 name: 'Kling AI', url: 'https://klingai.com', icon: '🎥', category: 'ai', tag: 'tag-video',
-                description: {
-                    ko: '긴 러닝타임과 디테일한 모션 컨트롤을 지원하는 비디오 생성 도구',
-                    en: 'Video generation tool supporting long clips and precise motion control'
-                }
+                description: { ko: '디테일한 모션 컨트롤이 가능한 비디오 생성', en: 'Video generation with detailed motion control' }
             },
-            {
-                name: 'Seedance 2.0', url: 'https://www.seedance.ai/', icon: '💃', category: 'ai', tag: 'tag-video',
-                description: {
-                    ko: '바이트댄스의 차세대 멀티모달 AI 비디오 생성기',
-                    en: 'ByteDance\'s next-generation multimodal AI video generator'
-                }
-            },
-            {
-                name: 'Luma AI', url: 'https://lumalabs.ai', icon: '💫', category: 'ai', tag: 'tag-video',
-                description: {
-                    ko: 'Dream Machine을 통한 텍스트 기반 빠르고 자연스러운 비디오 생성',
-                    en: 'Fast and natural video generation via Dream Machine technology'
-                }
-            },
-            {
-                name: 'LTX Studio', url: 'https://ltx.studio', icon: '🎞️', category: 'ai', tag: 'tag-video',
-                description: {
-                    ko: '컷 분할, 캐릭터 일관성 등 극강의 디렉팅을 지원하는 영상 스토리보드 툴',
-                    en: 'AI video storyboard tool for extreme directing and character consistency'
-                }
-            },
-            {
-                name: 'MiniMax (Hailuo)', url: 'https://hailuoai.video', icon: '🐚', category: 'ai', tag: 'tag-video',
-                description: {
-                    ko: '아시아 트렌드에 강하고 역동적인 애니메이션/실사 비디오 생성',
-                    en: 'Dynamic video generation strong in anime and realistic Asian trends'
-                }
-            },
-            {
-                name: 'OpusClip', url: 'https://www.opus.pro', icon: '✂️', category: 'ai', tag: 'tag-video',
-                description: {
-                    ko: '긴 영상을 자동으로 쇼츠, 릴스용 숏폼으로 변환해주는 툴',
-                    en: 'Automatically repurpose long videos into viral short-form clips'
-                }
-            },
-            {
-                name: 'HeyGen', url: 'https://www.heygen.com', icon: '👤', category: 'ai', tag: 'tag-video',
-                description: {
-                    ko: '완벽한 립싱크를 지원하는 AI 아바타 대화형 비디오 제작 플랫폼',
-                    en: 'AI avatar video platform with perfect lip-sync technology'
-                }
-            },
-
-            // AI IMAGE & MULTI (이미지 전용 / 멀티)
             {
                 name: 'Midjourney', url: 'https://www.midjourney.com', icon: '⛵', category: 'ai', tag: 'tag-image',
-                description: {
-                    ko: '아티스트들이 가장 사랑하는 압도적 퀄리티의 텍스트-이미지 생성 AI',
-                    en: 'Top-tier text-to-image AI loved by artists for breathtaking quality'
-                }
+                description: { ko: '최고 수준의 퀄리티를 자랑하는 이미지 생성 AI', en: 'Top-tier quality text-to-image AI' }
             },
             {
                 name: 'Runway', url: 'https://runwayml.com', icon: '🎨', category: 'ai', tag: 'tag-multi',
-                description: {
-                    ko: 'Gen-4 모델 기반, 비디오와 이미지 생성을 모두 지원하는 크리에이티브 스위트',
-                    en: 'Creative suite powered by Gen-4 for both image and video generation'
-                }
+                description: { ko: 'Gen-4 기반 이미지 및 비디오 크리에이티브 스위트', en: 'Creative suite for AI image and video' }
             },
-            {
-                name: 'Leonardo.Ai', url: 'https://leonardo.ai', icon: '🦁', category: 'ai', tag: 'tag-image',
-                description: {
-                    ko: '강력한 컨트롤과 커스텀 모델 학습을 지원하는 이미지 생성 플랫폼',
-                    en: 'Image generation platform with powerful control and custom model training'
-                }
-            },
-
-            // AI AUDIO (오디오/음악 전용)
             {
                 name: 'Suno', url: 'https://suno.com', icon: '🎧', category: 'ai', tag: 'tag-audio',
-                description: {
-                    ko: '프롬프트 몇 줄로 보컬이 포함된 고품질 음악 트랙을 생성하는 AI',
-                    en: 'Generate high-quality music tracks with vocals using simple prompts'
-                }
+                description: { ko: '보컬과 반주가 포함된 고품질 음악 생성 AI', en: 'Generate high-quality music tracks with vocals' }
             },
             {
-                name: 'Udio', url: 'https://www.udio.com', icon: '🎼', category: 'ai', tag: 'tag-audio',
-                description: {
-                    ko: '극사실적인 퀄리티와 감성을 표현하는 전문가 수준의 AI 음악 생성기',
-                    en: 'Professional-grade AI music generator for ultra-realistic sound'
-                }
+                name: 'HeyGen', url: 'https://www.heygen.com', icon: '👤', category: 'ai', tag: 'tag-video',
+                description: { ko: '립싱크가 완벽한 AI 아바타 대화형 비디오 플랫폼', en: 'AI avatar video platform with perfect lip-sync' }
             },
 
-            // CAREER & JOB
+            // ================= CAREER & JOB =================
             {
-                name: 'LinkedIn', url: 'https://www.linkedin.com', icon: '💼', category: 'career',
-                description: { ko: '글로벌 비즈니스 네트워킹 및 채용', en: 'Global networking & jobs' }
+                name: 'LinkedIn', url: 'https://www.linkedin.com', icon: '💼', category: 'career', tag: 'tag-platform',
+                description: { ko: '글로벌 비즈니스 네트워킹 및 해외 취업/이직', en: 'Global networking & jobs' }
             },
             {
-                name: '원티드', url: 'https://www.wanted.co.kr', icon: '🎯', category: 'career',
-                description: { ko: '추천 기반 IT 전문 채용 플랫폼', en: 'Referral-based IT job platform' }
+                name: '원티드', url: 'https://www.wanted.co.kr', icon: '🎯', category: 'career', tag: 'tag-platform',
+                description: { ko: '추천 기반 IT, 디자인, 마케팅 전문 채용 플랫폼', en: 'Referral-based professional job platform' }
             },
             {
-                name: '크몽', url: 'https://kmong.com', icon: '💡', category: 'career',
-                description: { ko: '프리랜서 및 외주 재능 마켓', en: 'Freelance talent marketplace' }
-            },
-
-            // VIDEO (일반)
-            {
-                name: 'YouTube', url: 'https://www.youtube.com', icon: '📺', category: 'video',
-                description: { ko: '글로벌 동영상 공유 플랫폼', en: 'Global video sharing platform' }
+                name: '잡플래닛', url: 'https://www.jobplanet.co.kr', icon: '🏢', category: 'career', tag: 'tag-platform',
+                description: { ko: '이직 전 필수! 리얼한 기업 리뷰와 연봉 정보', en: 'Corporate reviews and salary information' }
             },
             {
-                name: 'Vimeo', url: 'https://vimeo.com', icon: '🎞️', category: 'video',
-                description: { ko: '전문가용 고품질 포트폴리오 호스팅', en: 'High-quality professional hosting' }
-            },
-
-            // DESIGN & PORTFOLIO
-            {
-                name: 'Behance', url: 'https://www.behance.net', icon: '🎨', category: 'design',
-                description: { ko: '글로벌 크리에이티브 포트폴리오 네트워크', en: 'Global creative portfolio network' }
+                name: '리멤버', url: 'https://rememberapp.co.kr/', icon: '👔', category: 'career', tag: 'tag-platform',
+                description: { ko: '명함 관리부터 전문가 스카웃 제안까지 받는 곳', en: 'Business card management & career scouting' }
             },
             {
-                name: 'Pinterest', url: 'https://www.pinterest.com', icon: '📌', category: 'design',
-                description: { ko: '시각적 레퍼런스 및 아이디어 서치', en: 'Visual reference and idea search' }
+                name: '크몽', url: 'https://kmong.com', icon: '💡', category: 'career', tag: 'tag-freelance',
+                description: { ko: '디자인, 영상 등 국내 최대 프리랜서 재능 마켓', en: 'Korea\'s largest freelance talent marketplace' }
+            },
+            {
+                name: '숨고', url: 'https://soomgo.com/', icon: '🤝', category: 'career', tag: 'tag-freelance',
+                description: { ko: '필요한 외주 작업을 빠르게 매칭받는 서비스', en: 'Fast matching service for freelance work' }
             },
 
-            // CREATOR HUB
+            // ================= VIDEO =================
             {
-                name: 'GitHub', url: 'https://github.com/pandauniverse-art', icon: '💻', category: 'creator',
-                description: { ko: '판다유니버스 코드 저장소 및 프로젝트', en: 'Panda Universe code repository' }
+                name: 'YouTube', url: 'https://www.youtube.com', icon: '📺', category: 'video', tag: 'tag-platform',
+                description: { ko: '전 세계 가장 큰 동영상 공유 및 크리에이터 플랫폼', en: 'The largest global video sharing platform' }
             },
             {
-                name: '인프런', url: 'https://www.inflearn.com/users/574632/@panda3d', icon: '🎓', category: 'creator',
-                description: { ko: 'C4D & Octane Render 등 온라인 강의', en: 'Online courses including C4D' }
+                name: 'Vimeo', url: 'https://vimeo.com', icon: '🎞️', category: 'video', tag: 'tag-platform',
+                description: { ko: '아티스트와 전문가를 위한 고품질 영상 호스팅', en: 'High-quality video hosting for professionals' }
+            },
+            {
+                name: 'Motion Array', url: 'https://motionarray.com/', icon: '🎬', category: 'video', tag: 'tag-asset',
+                description: { ko: '프리미어, 에프터이펙트 템플릿 및 트랜지션 소스', en: 'Premiere & AE templates, transitions, and assets' }
+            },
+            {
+                name: 'Artlist', url: 'https://artlist.io/', icon: '🎵', category: 'video', tag: 'tag-asset',
+                description: { ko: '저작권 걱정 없는 고품질 BGM 및 효과음 라이브러리', en: 'Royalty-free high-quality music & SFX library' }
+            },
+            {
+                name: 'Envato Elements', url: 'https://elements.envato.com/', icon: '🍃', category: 'video', tag: 'tag-asset',
+                description: { ko: '영상 소스, 그래픽, 3D 에셋 무제한 구독 서비스', en: 'Unlimited subscription for video & graphic assets' }
+            },
+
+            // ================= DESIGN & PORTFOLIO =================
+            {
+                name: 'Behance', url: 'https://www.behance.net', icon: '🎨', category: 'design', tag: 'tag-platform',
+                description: { ko: 'Adobe에서 운영하는 세계 최대 크리에이티브 포트폴리오', en: 'World\'s largest creative portfolio network by Adobe' }
+            },
+            {
+                name: 'ArtStation', url: 'https://www.artstation.com', icon: '⚔️', category: 'design', tag: 'tag-3d',
+                description: { ko: '3D, 컨셉 아트, 게임 디자인 분야 최고의 포트폴리오 사이트', en: 'Premier showcase platform for 3D and concept art' }
+            },
+            {
+                name: 'Dribbble', url: 'https://dribbble.com', icon: '🏀', category: 'design', tag: 'tag-uiux',
+                description: { ko: 'UI/UX 디자인, 일러스트, 모션 그래픽 영감 커뮤니티', en: 'Community for UI/UX, illustration, and motion inspiration' }
+            },
+            {
+                name: 'Pinterest', url: 'https://www.pinterest.com', icon: '📌', category: 'design', tag: 'tag-platform',
+                description: { ko: '무한한 시각적 레퍼런스와 아이디어 무드보드', en: 'Visual reference and idea moodboards' }
+            },
+            {
+                name: 'Awwwards', url: 'https://www.awwwards.com/', icon: '🏆', category: 'design', tag: 'tag-uiux',
+                description: { ko: '전 세계 가장 혁신적인 웹 디자인 트렌드 어워드', en: 'Awards recognizing the most innovative web designs' }
+            },
+            {
+                name: 'Adobe Color', url: 'https://color.adobe.com/', icon: '🌈', category: 'design', tag: 'tag-asset',
+                description: { ko: '디자인 작업 전 필수적인 컬러 팔레트 추출 및 생성기', en: 'Color palette generator and extraction tool' }
+            },
+
+            // ================= CREATOR HUB =================
+            {
+                name: 'GitHub', url: 'https://github.com/pandauniverse-art', icon: '💻', category: 'creator', tag: 'tag-platform',
+                description: { ko: '판다유니버스 코드 저장소 및 프론트엔드 프로젝트', en: 'Panda Universe code repository and projects' }
+            },
+            {
+                name: '인프런 (Inflearn)', url: 'https://www.inflearn.com/users/574632/@panda3d', icon: '🎓', category: 'creator', tag: 'tag-course',
+                description: { ko: 'C4D, Octane Render 등 실무 디자인 온라인 강의', en: 'Online courses including C4D and practical design' }
+            },
+            {
+                name: '콜로소 (Coloso)', url: 'https://coloso.co.kr/', icon: '🔥', category: 'creator', tag: 'tag-course',
+                description: { ko: '업계 최상위 전문가들의 3D, 모션그래픽, 아트워크 인강', en: 'High-end classes by top industry professionals in 3D & Motion' }
+            },
+            {
+                name: 'Gumroad', url: 'https://gumroad.com/', icon: '🛒', category: 'creator', tag: 'tag-asset',
+                description: { ko: '자신만의 3D 에셋, 튜토리얼, 굿즈를 직접 판매하는 플랫폼', en: 'Platform to sell your own 3D assets, tutorials, and goods' }
+            },
+            {
+                name: 'CGTrader', url: 'https://www.cgtrader.com/', icon: '🧊', category: 'creator', tag: 'tag-3d',
+                description: { ko: '글로벌 3D 모델 마켓플레이스, 소스 구매 및 판매', en: 'Global 3D model marketplace for buying and selling' }
+            },
+            {
+                name: '티스토리 블로그', url: 'https://panda-universe.tistory.com/', icon: '✍️', category: 'creator', tag: 'tag-platform',
+                description: { ko: '판다유니버스 3D 기술 튜토리얼 및 지식 아카이빙', en: 'Panda Universe 3D technical tutorials & knowledge base' }
             }
         ];
 
