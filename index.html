@@ -48,10 +48,7 @@
         }
 
         @keyframes fadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
+            to { opacity: 0; visibility: hidden; }
         }
 
         .splash-logo {
@@ -86,9 +83,7 @@
         }
 
         @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+            to { opacity: 1; }
         }
 
         header {
@@ -128,18 +123,18 @@
 
         .search-box {
             flex: 1;
-            min-width: 300px;
-            max-width: 500px;
+            min-width: 250px;
+            max-width: 400px;
         }
 
         .search-box input {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.6rem 1rem;
             background: var(--card-bg);
             border: 2px solid var(--border-color);
             border-radius: 12px;
             color: var(--text-color);
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
         }
 
@@ -157,14 +152,14 @@
         }
 
         .category-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             background: var(--card-bg);
             border: 2px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-color);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .category-btn:hover {
@@ -179,18 +174,13 @@
         }
 
         /* Color Picker */
-        .color-picker-wrapper {
-            position: relative;
-        }
+        .color-picker-wrapper { position: relative; }
 
         .color-picker-btn {
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: linear-gradient(135deg, 
-                var(--primary-color) 0%, 
-                var(--secondary-color) 50%, 
-                #ec4899 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, #ec4899 100%);
             border: 2px solid var(--border-color);
             cursor: pointer;
             transition: all 0.3s ease;
@@ -220,9 +210,7 @@
             min-width: 250px;
         }
 
-        .color-palette.active {
-            display: block;
-        }
+        .color-palette.active { display: block; }
 
         .palette-title {
             font-size: 0.9rem;
@@ -258,11 +246,7 @@
             border-top: 1px solid var(--border-color);
         }
 
-        .custom-color-input {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
+        .custom-color-input { display: flex; gap: 0.5rem; align-items: center; }
 
         .custom-color-input input[type="color"] {
             width: 50px;
@@ -284,9 +268,7 @@
             font-size: 0.85rem;
         }
 
-        .custom-color-input button:hover {
-            background: var(--hover-color);
-        }
+        .custom-color-input button:hover { background: var(--hover-color); }
 
         /* Language Toggle */
         .language-toggle {
@@ -299,90 +281,97 @@
         }
 
         .lang-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             background: transparent;
             border: none;
             border-radius: 6px;
             color: var(--text-color);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        .lang-btn:hover {
-            background: rgba(99, 102, 241, 0.1);
-        }
+        .lang-btn:hover { background: rgba(99, 102, 241, 0.1); }
+        .lang-btn.active { background: var(--primary-color); color: white; }
 
-        .lang-btn.active {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* Sites Grid */
+        /* Sites Grid - 크기 축소 및 간격 조정 */
         .sites-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* 기존 300px에서 축소 */
+            gap: 1rem; /* 간격 축소 */
             margin-bottom: 3rem;
         }
 
         .site-card {
             background: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 1.2rem; /* 패딩 축소 */
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
             transform-style: preserve-3d;
             perspective: 1000px;
         }
 
         .site-card:hover {
-            transform: translateY(-8px) rotateX(5deg);
+            transform: translateY(-5px);
             border-color: var(--primary-color);
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
         }
 
         .site-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
+            font-size: 2rem; /* 아이콘 크기 축소 */
+        }
+
+        /* 뱃지(분류 태그) 스타일 추가 */
+        .site-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--secondary-color);
+            font-weight: bold;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            white-space: nowrap;
         }
 
         .site-name {
-            font-size: 1.3rem;
+            font-size: 1.1rem; /* 폰트 축소 */
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             color: var(--text-color);
         }
 
         .site-description {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.85rem; /* 폰트 축소 */
+            line-height: 1.4;
+            flex-grow: 1;
         }
 
-        .category-section {
-            margin-bottom: 3rem;
-        }
+        .category-section { margin-bottom: 3rem; }
 
         .category-title {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-
-        .hidden {
-            display: none;
         }
 
         footer {
@@ -399,39 +388,17 @@
             transition: color 0.3s ease;
         }
 
-        footer a:hover {
-            color: var(--secondary-color);
-        }
+        footer a:hover { color: var(--secondary-color); }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
+            .container { padding: 1rem; }
+            h1 { font-size: 2rem; }
             .sites-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 0.8rem;
             }
-
-            .controls {
-                flex-direction: column;
-            }
-
-            .search-box {
-                width: 100%;
-            }
-
-            .splash-logo {
-                font-size: 3rem;
-            }
-
-            .splash-text {
-                font-size: 1.5rem;
-            }
+            .controls { flex-direction: column; }
+            .search-box { width: 100%; max-width: 100%; }
         }
     </style>
 </head>
@@ -496,7 +463,7 @@
     </div>
 
     <script>
-        // Translation Data
+        // Translation Data (태그 관련 번역 추가)
         const translations = {
             ko: {
                 'subtitle': '크리에이터와 전문가를 위한 큐레이션 링크',
@@ -515,7 +482,13 @@
                 'category-career': 'CAREER & JOB',
                 'category-video': 'VIDEO',
                 'category-design': 'DESIGN & PORTFOLIO',
-                'category-creator': 'CREATOR HUB'
+                'category-creator': 'CREATOR HUB',
+                // AI 세부 태그
+                'tag-agent': '🤖 에이전트',
+                'tag-image': '🎨 이미지 제작',
+                'tag-video': '🎬 영상 제작',
+                'tag-multi': '✨ 이미지+영상 (멀티)',
+                'tag-chat': '💬 챗봇/대화형'
             },
             en: {
                 'subtitle': 'Curated links for creators and professionals',
@@ -534,18 +507,36 @@
                 'category-career': 'CAREER & JOB',
                 'category-video': 'VIDEO',
                 'category-design': 'DESIGN & PORTFOLIO',
-                'category-creator': 'CREATOR HUB'
+                'category-creator': 'CREATOR HUB',
+                // AI 세부 태그
+                'tag-agent': '🤖 AI Agent',
+                'tag-image': '🎨 Image Gen',
+                'tag-video': '🎬 Video Gen',
+                'tag-multi': '✨ Multi-modal',
+                'tag-chat': '💬 Chatbot'
             }
         };
 
-        // Sites Data with bilingual descriptions
+        // Sites Data (tag 속성 및 새 사이트 추가)
         const sites = [
             // AI TOOLS
+            {
+                name: 'Manus',
+                url: 'https://manus.im',
+                icon: '🦾',
+                category: 'ai',
+                tag: 'tag-agent',
+                description: {
+                    ko: '복잡한 작업을 자율적으로 기획하고 수행하는 차세대 AI 에이전트',
+                    en: 'Next-gen AI agent that autonomously plans and executes complex tasks'
+                }
+            },
             {
                 name: 'ChatGPT',
                 url: 'https://chat.openai.com',
                 icon: '🤖',
                 category: 'ai',
+                tag: 'tag-chat',
                 description: {
                     ko: '대화형 AI 어시스턴트, 글쓰기, 코딩, 아이디어 발전에 활용',
                     en: 'Conversational AI assistant for writing, coding, and brainstorming'
@@ -556,6 +547,7 @@
                 url: 'https://claude.ai',
                 icon: '🧠',
                 category: 'ai',
+                tag: 'tag-chat',
                 description: {
                     ko: 'Anthropic의 AI 어시스턴트, 긴 문맥과 복잡한 작업에 강점',
                     en: 'Anthropic\'s AI assistant with strengths in long context and complex tasks'
@@ -566,29 +558,21 @@
                 url: 'https://gemini.google.com/?hl=ko',
                 icon: '💎',
                 category: 'ai',
+                tag: 'tag-multi',
                 description: {
                     ko: 'Google의 멀티모달 AI 어시스턴트, 텍스트/이미지/코드 생성 및 분석',
                     en: 'Google\'s multimodal AI assistant for text/image/code generation and analysis'
                 }
             },
             {
-                name: 'Genspark',
-                url: 'https://www.genspark.ai',
-                icon: '🌟',
+                name: 'Midjourney',
+                url: 'https://www.midjourney.com',
+                icon: '⛵',
                 category: 'ai',
+                tag: 'tag-image',
                 description: {
-                    ko: '차세대 AI 검색 엔진 - 실시간 정보 검색, 이미지/비디오/오디오 생성, 코딩 지원까지 올인원 플랫폼',
-                    en: 'Next-gen AI search engine - Real-time search, image/video/audio generation, coding support all-in-one'
-                }
-            },
-            {
-                name: 'Perplexity',
-                url: 'https://www.perplexity.ai',
-                icon: '🔍',
-                category: 'ai',
-                description: {
-                    ko: 'AI 검색 엔진, 실시간 정보 검색과 답변 제공',
-                    en: 'AI-powered search engine with real-time information and answers'
+                    ko: '압도적인 퀄리티를 자랑하는 텍스트-이미지 생성 AI',
+                    en: 'Text-to-image AI generating exceptionally high-quality visuals'
                 }
             },
             {
@@ -596,19 +580,10 @@
                 url: 'https://sora.com',
                 icon: '🎬',
                 category: 'ai',
+                tag: 'tag-video',
                 description: {
-                    ko: 'OpenAI의 텍스트-비디오 생성 AI',
-                    en: 'OpenAI\'s text-to-video generation AI'
-                }
-            },
-            {
-                name: 'Kling AI',
-                url: 'https://klingai.com',
-                icon: '🎥',
-                category: 'ai',
-                description: {
-                    ko: '고품질 AI 비디오 생성 도구',
-                    en: 'High-quality AI video generation tool'
+                    ko: 'OpenAI의 고품질 텍스트-비디오 생성 AI',
+                    en: 'OpenAI\'s high-quality text-to-video generation AI'
                 }
             },
             {
@@ -616,9 +591,32 @@
                 url: 'https://runwayml.com',
                 icon: '🎨',
                 category: 'ai',
+                tag: 'tag-multi',
                 description: {
-                    ko: 'AI 기반 크리에이티브 도구 모음',
-                    en: 'AI-powered creative tools suite'
+                    ko: '이미지 및 영상 생성에 특화된 AI 크리에이티브 도구 모음',
+                    en: 'AI-powered creative tools suite specialized in image & video generation'
+                }
+            },
+            {
+                name: 'Kling AI',
+                url: 'https://klingai.com',
+                icon: '🎥',
+                category: 'ai',
+                tag: 'tag-video',
+                description: {
+                    ko: '사실적인 물리 법칙을 구현하는 고품질 AI 비디오 생성 도구',
+                    en: 'High-quality AI video generation tool with realistic physics'
+                }
+            },
+            {
+                name: 'Genspark',
+                url: 'https://www.genspark.ai',
+                icon: '🌟',
+                category: 'ai',
+                tag: 'tag-multi',
+                description: {
+                    ko: '정보 검색부터 이미지/비디오 생성까지 지원하는 올인원 플랫폼',
+                    en: 'All-in-one platform from search to image/video generation'
                 }
             },
             {
@@ -626,19 +624,10 @@
                 url: 'https://lumalabs.ai',
                 icon: '💫',
                 category: 'ai',
+                tag: 'tag-video',
                 description: {
-                    ko: '3D 캡처 및 AI 비디오 생성',
-                    en: '3D capture and AI video generation'
-                }
-            },
-            {
-                name: 'Higgsfield',
-                url: 'https://higgsfield.ai',
-                icon: '⚡',
-                category: 'ai',
-                description: {
-                    ko: '소셜 미디어용 AI 비디오 생성',
-                    en: 'AI video generation for social media'
+                    ko: '3D 캡처 및 텍스트 기반 AI 비디오 생성(Dream Machine)',
+                    en: '3D capture and text-based AI video generation (Dream Machine)'
                 }
             },
             {
@@ -646,238 +635,89 @@
                 url: 'https://www.heygen.com',
                 icon: '👤',
                 category: 'ai',
+                tag: 'tag-video',
                 description: {
-                    ko: 'AI 아바타 비디오 제작 플랫폼',
-                    en: 'AI avatar video creation platform'
+                    ko: '발화에 맞춰 자연스럽게 움직이는 AI 아바타 비디오 제작 플랫폼',
+                    en: 'AI avatar video creation platform with lip-sync technology'
                 }
             },
             {
-                name: 'Seedance 2.0',
-                url: 'https://www.seedance.ai/',
-                icon: '✨',
+                name: 'Perplexity',
+                url: 'https://www.perplexity.ai',
+                icon: '🔍',
                 category: 'ai',
+                tag: 'tag-chat',
                 description: {
-                    ko: '멀티모달 AI 비디오 생성기',
-                    en: 'Multimodal AI video generator'
+                    ko: 'AI 검색 엔진, 실시간 정보 검색과 출처 기반 답변 제공',
+                    en: 'AI-powered search engine with real-time information and answers'
                 }
             },
 
             // CAREER & JOB
             {
-                name: 'LinkedIn',
-                url: 'https://www.linkedin.com',
-                icon: '💼',
-                category: 'career',
-                description: {
-                    ko: '글로벌 비즈니스 네트워킹 및 채용 플랫폼',
-                    en: 'Global business networking and job platform'
-                }
+                name: 'LinkedIn', url: 'https://www.linkedin.com', icon: '💼', category: 'career',
+                description: { ko: '글로벌 비즈니스 네트워킹 및 채용 플랫폼', en: 'Global business networking and job platform' }
             },
             {
-                name: '사람인',
-                url: 'https://www.saramin.co.kr',
-                icon: '👔',
-                category: 'career',
-                description: {
-                    ko: '국내 최대 채용 정보 사이트',
-                    en: 'Korea\'s largest job search platform'
-                }
+                name: '사람인', url: 'https://www.saramin.co.kr', icon: '👔', category: 'career',
+                description: { ko: '국내 최대 채용 정보 사이트', en: 'Korea\'s largest job search platform' }
             },
             {
-                name: '원티드',
-                url: 'https://www.wanted.co.kr',
-                icon: '🎯',
-                category: 'career',
-                description: {
-                    ko: '추천 기반 채용 플랫폼',
-                    en: 'Referral-based job platform'
-                }
+                name: '원티드', url: 'https://www.wanted.co.kr', icon: '🎯', category: 'career',
+                description: { ko: '추천 기반 IT 전문 채용 플랫폼', en: 'Referral-based IT job platform' }
             },
             {
-                name: '크몽',
-                url: 'https://kmong.com',
-                icon: '💡',
-                category: 'career',
-                description: {
-                    ko: '프리랜서 재능 마켓플레이스',
-                    en: 'Freelance talent marketplace'
-                }
-            },
-            {
-                name: '잡코리아',
-                url: 'https://www.jobkorea.co.kr',
-                icon: '📋',
-                category: 'career',
-                description: {
-                    ko: '종합 채용 정보 포털',
-                    en: 'Comprehensive job search portal'
-                }
-            },
-            {
-                name: '리드미컬 카페',
-                url: 'https://cafe.naver.com/rhymage',
-                icon: '☕',
-                category: 'career',
-                description: {
-                    ko: '콘텐츠 크리에이터 커뮤니티',
-                    en: 'Content creator community'
-                }
+                name: '크몽', url: 'https://kmong.com', icon: '💡', category: 'career',
+                description: { ko: '프리랜서 및 외주 작업 재능 마켓플레이스', en: 'Freelance talent marketplace' }
             },
 
             // VIDEO
             {
-                name: 'YouTube',
-                url: 'https://www.youtube.com',
-                icon: '📺',
-                category: 'video',
-                description: {
-                    ko: '글로벌 동영상 공유 플랫폼',
-                    en: 'Global video sharing platform'
-                }
+                name: 'YouTube', url: 'https://www.youtube.com', icon: '📺', category: 'video',
+                description: { ko: '글로벌 동영상 공유 플랫폼', en: 'Global video sharing platform' }
             },
             {
-                name: 'Instagram',
-                url: 'https://www.instagram.com/',
-                icon: '📷',
-                category: 'video',
-                description: {
-                    ko: '사진과 숏폼 비디오 중심 소셜 미디어 플랫폼',
-                    en: 'Photo and short-form video social media platform'
-                }
-            },
-            {
-                name: 'Threads',
-                url: 'https://www.threads.com/',
-                icon: '🧵',
-                category: 'video',
-                description: {
-                    ko: 'Instagram의 텍스트 기반 소셜 네트워킹 앱',
-                    en: 'Instagram\'s text-based social networking app'
-                }
-            },
-            {
-                name: 'Vimeo',
-                url: 'https://vimeo.com',
-                icon: '🎞️',
-                category: 'video',
-                description: {
-                    ko: '고품질 비디오 호스팅 플랫폼',
-                    en: 'High-quality video hosting platform'
-                }
+                name: 'Vimeo', url: 'https://vimeo.com', icon: '🎞️', category: 'video',
+                description: { ko: '전문가용 고품질 비디오 호스팅 플랫폼', en: 'High-quality professional video hosting' }
             },
 
             // DESIGN & PORTFOLIO
             {
-                name: 'Behance',
-                url: 'https://www.behance.net',
-                icon: '🎨',
-                category: 'design',
-                description: {
-                    ko: 'Adobe의 크리에이티브 포트폴리오 플랫폼',
-                    en: 'Adobe\'s creative portfolio platform'
-                }
+                name: 'Behance', url: 'https://www.behance.net', icon: '🎨', category: 'design',
+                description: { ko: 'Adobe의 크리에이티브 포트폴리오 플랫폼', en: 'Adobe\'s creative portfolio platform' }
             },
             {
-                name: 'Dribbble',
-                url: 'https://dribbble.com',
-                icon: '🏀',
-                category: 'design',
-                description: {
-                    ko: '디자이너를 위한 쇼케이스 커뮤니티',
-                    en: 'Designer showcase community'
-                }
-            },
-            {
-                name: 'Adobe Stock',
-                url: 'https://stock.adobe.com',
-                icon: '📸',
-                category: 'design',
-                description: {
-                    ko: '고품질 스톡 이미지 및 비디오 마켓',
-                    en: 'High-quality stock images and video marketplace'
-                }
-            },
-            {
-                name: 'Pinterest',
-                url: 'https://www.pinterest.com',
-                icon: '📌',
-                category: 'design',
-                description: {
-                    ko: '시각적 아이디어 발견 플랫폼',
-                    en: 'Visual idea discovery platform'
-                }
+                name: 'Pinterest', url: 'https://www.pinterest.com', icon: '📌', category: 'design',
+                description: { ko: '시각적 레퍼런스 및 아이디어 발견 플랫폼', en: 'Visual reference and idea discovery' }
             },
 
             // CREATOR HUB
             {
-                name: 'GitHub',
-                url: 'https://github.com/pandauniverse-art',
-                icon: '💻',
-                category: 'creator',
-                description: {
-                    ko: '판다유니버스 코드 저장소 및 프로젝트',
-                    en: 'Panda Universe code repository and projects'
-                }
+                name: 'GitHub', url: 'https://github.com/pandauniverse-art', icon: '💻', category: 'creator',
+                description: { ko: '판다유니버스 코드 저장소 및 프로젝트', en: 'Panda Universe code repository' }
             },
             {
-                name: '인프런',
-                url: 'https://www.inflearn.com/users/574632/@panda3d',
-                icon: '🎓',
-                category: 'creator',
-                description: {
-                    ko: 'C4D & Octane Render 온라인 강의',
-                    en: 'C4D & Octane Render online courses'
-                }
-            },
-            {
-                name: 'Gumroad',
-                url: 'https://pandauniverse.gumroad.com/',
-                icon: '🛒',
-                category: 'creator',
-                description: {
-                    ko: '3D 에셋 및 디지털 제품 스토어',
-                    en: '3D assets and digital products store'
-                }
-            },
-            {
-                name: '티스토리 블로그',
-                url: 'https://panda-universe.tistory.com/',
-                icon: '✍️',
-                category: 'creator',
-                description: {
-                    ko: '3D 기술 튜토리얼 및 지식 공유',
-                    en: '3D technical tutorials and knowledge sharing'
-                }
+                name: '인프런', url: 'https://www.inflearn.com/users/574632/@panda3d', icon: '🎓', category: 'creator',
+                description: { ko: 'C4D & Octane Render 등 온라인 강의', en: 'Online courses including C4D' }
             }
         ];
 
         // Color presets
         const colorPresets = [
-            { primary: '#6366f1', secondary: '#8b5cf6' }, // Indigo
-            { primary: '#3b82f6', secondary: '#06b6d4' }, // Blue
-            { primary: '#8b5cf6', secondary: '#d946ef' }, // Purple
-            { primary: '#ec4899', secondary: '#f43f5e' }, // Pink
-            { primary: '#f59e0b', secondary: '#eab308' }, // Amber
-            { primary: '#10b981', secondary: '#14b8a6' }, // Green
-            { primary: '#06b6d4', secondary: '#0ea5e9' }, // Cyan
-            { primary: '#f43f5e', secondary: '#fb923c' }, // Rose
-            { primary: '#a855f7', secondary: '#ec4899' }, // Violet
-            { primary: '#14b8a6', secondary: '#22d3ee' }, // Teal
-            { primary: '#64748b', secondary: '#94a3b8' }, // Slate
-            { primary: '#ef4444', secondary: '#f97316' }, // Red
-            { primary: '#0ea5e9', secondary: '#6366f1' }, // Sky
-            { primary: '#84cc16', secondary: '#22c55e' }, // Lime
-            { primary: '#eab308', secondary: '#f59e0b' }, // Yellow
-            { primary: '#dc2626', secondary: '#991b1b' }, // Dark Red
-            { primary: '#7c3aed', secondary: '#6d28d9' }, // Deep Purple
-            { primary: '#059669', secondary: '#047857' }, // Emerald
-            { primary: '#0284c7', secondary: '#0369a1' }, // Ocean
-            { primary: '#ea580c', secondary: '#c2410c' }  // Orange
+            { primary: '#6366f1', secondary: '#8b5cf6' },
+            { primary: '#3b82f6', secondary: '#06b6d4' },
+            { primary: '#8b5cf6', secondary: '#d946ef' },
+            { primary: '#ec4899', secondary: '#f43f5e' },
+            { primary: '#f59e0b', secondary: '#eab308' },
+            { primary: '#10b981', secondary: '#14b8a6' },
+            { primary: '#059669', secondary: '#047857' },
+            { primary: '#0284c7', secondary: '#0369a1' },
+            { primary: '#64748b', secondary: '#94a3b8' },
+            { primary: '#ea580c', secondary: '#c2410c' } 
         ];
 
         let currentLang = 'ko';
 
-        // Initialize
         function init() {
             renderColorPresets();
             renderSites();
@@ -885,7 +725,6 @@
             updateLanguage(currentLang);
         }
 
-        // Render color presets
         function renderColorPresets() {
             const colorGrid = document.getElementById('colorGrid');
             colorPresets.forEach(preset => {
@@ -897,24 +736,18 @@
             });
         }
 
-        // Apply color theme
         function applyColorTheme(primary, secondary) {
             document.documentElement.style.setProperty('--primary-color', primary);
             document.documentElement.style.setProperty('--secondary-color', secondary);
             document.documentElement.style.setProperty('--hover-color', primary);
         }
 
-        // Render sites
         function renderSites(filter = 'all', searchTerm = '') {
             const container = document.getElementById('sitesContainer');
             container.innerHTML = '';
 
             const categories = {
-                ai: [],
-                career: [],
-                video: [],
-                design: [],
-                creator: []
+                ai: [], career: [], video: [], design: [], creator: []
             };
 
             sites.forEach(site => {
@@ -949,8 +782,14 @@
                         card.target = '_blank';
                         card.rel = 'noopener noreferrer';
 
+                        // 뱃지가 있는 경우만 렌더링
+                        const badgeHtml = site.tag ? `<span class="site-badge">${translations[currentLang][site.tag]}</span>` : '';
+
                         card.innerHTML = `
-                            <span class="site-icon">${site.icon}</span>
+                            <div class="card-header">
+                                <span class="site-icon">${site.icon}</span>
+                                ${badgeHtml}
+                            </div>
                             <h3 class="site-name">${site.name}</h3>
                             <p class="site-description">${site.description[currentLang]}</p>
                         `;
@@ -964,11 +803,9 @@
             });
         }
 
-        // Update language
         function updateLanguage(lang) {
             currentLang = lang;
             
-            // Update all elements with data-lang-key
             document.querySelectorAll('[data-lang-key]').forEach(element => {
                 const key = element.getAttribute('data-lang-key');
                 if (translations[lang][key]) {
@@ -980,20 +817,16 @@
                 }
             });
 
-            // Update language buttons
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
             });
 
-            // Re-render sites with new language
             const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
             const searchTerm = document.getElementById('searchInput').value;
             renderSites(activeCategory, searchTerm);
         }
 
-        // Setup event listeners
         function setupEventListeners() {
-            // Category filter
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
@@ -1004,14 +837,12 @@
                 });
             });
 
-            // Search
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', (e) => {
                 const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
                 renderSites(activeCategory, e.target.value);
             });
 
-            // Color picker
             const colorPickerBtn = document.getElementById('colorPickerBtn');
             const colorPalette = document.getElementById('colorPalette');
             
@@ -1026,13 +857,11 @@
                 }
             });
 
-            // Custom color
             document.getElementById('applyCustomColor').addEventListener('click', () => {
                 const customColor = document.getElementById('customColorPicker').value;
                 applyColorTheme(customColor, customColor);
             });
 
-            // Language toggle
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const lang = btn.getAttribute('data-lang');
@@ -1041,7 +870,6 @@
             });
         }
 
-        // Initialize on load
         window.addEventListener('load', () => {
             init();
         });
