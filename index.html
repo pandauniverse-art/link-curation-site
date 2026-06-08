@@ -295,7 +295,7 @@
         .lang-btn:hover { background: rgba(99, 102, 241, 0.1); }
         .lang-btn.active { background: var(--primary-color); color: white; }
 
-        /* Sites Grid - 가로 최대 4개 고정 */
+        /* Sites Grid */
         .sites-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr); 
@@ -335,7 +335,6 @@
             font-size: 1.6rem;
         }
 
-        /* 뱃지(분류 태그) 컴팩트 스타일 */
         .site-badge {
             font-size: 0.6rem;
             padding: 0.15rem 0.4rem;
@@ -397,25 +396,18 @@
 
         footer a:hover { color: var(--secondary-color); }
 
-        /* 반응형 그리드 - 화면 크기에 따라 3개, 2개, 1개로 축소 */
         @media (max-width: 1024px) {
-            .sites-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .sites-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .sites-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .sites-grid { grid-template-columns: repeat(2, 1fr); }
             .controls { flex-direction: column; }
             .search-box { width: 100%; max-width: 100%; }
         }
 
         @media (max-width: 480px) {
-            .sites-grid {
-                grid-template-columns: 1fr;
-            }
+            .sites-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -480,7 +472,6 @@
     </div>
 
     <script>
-        // 번역 데이터
         const translations = {
             ko: {
                 'subtitle': '크리에이터와 전문가를 위한 큐레이션 링크',
@@ -500,14 +491,12 @@
                 'category-video': 'VIDEO',
                 'category-design': 'DESIGN & PORTFOLIO',
                 'category-creator': 'CREATOR HUB',
-                // AI 세부 태그
                 'tag-agent': '🤖 에이전트',
                 'tag-chat': '💬 챗봇',
                 'tag-image': '🎨 이미지',
                 'tag-video': '🎬 비디오',
                 'tag-multi': '✨ 멀티모달',
                 'tag-audio': '🎵 오디오',
-                // 일반 세부 태그
                 'tag-platform': '🌐 플랫폼',
                 'tag-freelance': '🤝 외주/프리랜서',
                 'tag-3d': '🧊 3D / CG',
@@ -533,14 +522,12 @@
                 'category-video': 'VIDEO',
                 'category-design': 'DESIGN & PORTFOLIO',
                 'category-creator': 'CREATOR HUB',
-                // AI 세부 태그
                 'tag-agent': '🤖 AI Agent',
                 'tag-chat': '💬 Chatbot',
                 'tag-image': '🎨 Image',
                 'tag-video': '🎬 Video',
                 'tag-multi': '✨ Multi-modal',
                 'tag-audio': '🎵 Audio',
-                // 일반 세부 태그
                 'tag-platform': '🌐 Platform',
                 'tag-freelance': '🤝 Freelance',
                 'tag-3d': '🧊 3D / CG',
@@ -550,7 +537,6 @@
             }
         };
 
-        // 전체 사이트 데이터
         const sites = [
             // ================= AI TOOLS =================
             {
@@ -576,6 +562,10 @@
             {
                 name: 'ComfyUI', url: 'https://github.com/comfyanonymous/ComfyUI', icon: '🧩', category: 'ai', tag: 'tag-image',
                 description: { ko: '강력하고 자유도 높은 노드 기반 이미지/비디오 생성 AI 인터페이스', en: 'Powerful and modular node-based Stable Diffusion GUI and pipeline' }
+            },
+            {
+                name: 'Civitai', url: 'https://civitai.com/', icon: '🧬', category: 'ai', tag: 'tag-image',
+                description: { ko: 'AI 이미지 모델 및 다양한 체크포인트/LoRA 에셋 커뮤니티 플랫폼', en: 'AI art model generation hub and checkpoint/LoRA community platform' }
             },
             {
                 name: 'Higgsfield AI', url: 'https://higgsfield.ai', icon: '⚡', category: 'ai', tag: 'tag-video',
@@ -654,6 +644,10 @@
                 description: { ko: '아티스트와 전문가를 위한 고품질 영상 호스팅', en: 'High-quality video hosting for professionals' }
             },
             {
+                name: 'Motionographer', url: 'https://motionographer.com/', icon: '🌐', category: 'video', tag: 'tag-platform',
+                description: { ko: '전 세계 뛰어난 모션 그래픽 디자이너들의 작품과 스토리 아카이브', en: 'Source of inspiration and stories for the global motion graphics community' }
+            },
+            {
                 name: 'Motion Array', url: 'https://motionarray.com/', icon: '🎬', category: 'video', tag: 'tag-asset',
                 description: { ko: '프리미어, 에펙 템플릿 및 트랜지션 소스 다운로드', en: 'Premiere & AE templates, transitions, and assets' }
             },
@@ -680,12 +674,20 @@
                 description: { ko: 'UI/UX 디자인, 일러스트, 모션 그래픽 영감 커뮤니티', en: 'Community for UI/UX, illustration, and motion inspiration' }
             },
             {
+                name: 'Figma', url: 'https://www.figma.com/', icon: '📱', category: 'design', tag: 'tag-uiux',
+                description: { ko: 'UI/UX 제품 디자인 및 프로토타이핑을 위한 최고의 실시간 협업 툴', en: 'The leading collaborative interface design and prototyping tool' }
+            },
+            {
                 name: 'Pinterest', url: 'https://www.pinterest.com', icon: '📌', category: 'design', tag: 'tag-platform',
                 description: { ko: '무한한 시각적 레퍼런스와 아이디어 무드보드 탐색', en: 'Explore visual references and idea moodboards' }
             },
             {
                 name: 'Awwwards', url: 'https://www.awwwards.com/', icon: '🏆', category: 'design', tag: 'tag-uiux',
                 description: { ko: '전 세계 가장 혁신적인 웹 디자인 트렌드 어워드', en: 'Awards recognizing the most innovative web designs' }
+            },
+            {
+                name: '눈누 (noonnu)', url: 'https://noonnu.cc/', icon: '🔤', category: 'design', tag: 'tag-asset',
+                description: { ko: '상업적 이용이 가능한 국문 무료 서체(폰트) 추천 및 비교 사이트', en: 'Curation site for commercially usable free Korean fonts' }
             },
             {
                 name: 'Adobe Color', url: 'https://color.adobe.com/', icon: '🌈', category: 'design', tag: 'tag-asset',
@@ -821,7 +823,6 @@
         function updateLanguage(lang) {
             currentLang = lang;
             
-            // 기존 텍스트 업데이트
             document.querySelectorAll('[data-lang-key]').forEach(element => {
                 const key = element.getAttribute('data-lang-key');
                 if (translations[lang][key]) {
